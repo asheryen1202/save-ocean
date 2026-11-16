@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>守海 — 認識海洋危機與保護</title>
+  <style>
+:root {
+  --paper: #f3efe6;
+  --card: #faf7f1;
+  --ink: #12263a;
+  --muted: #54616c;
+  --sea: #1d6b63;
+  --line: #ddd6c8;
+  --clay: #a84b38;
+}
+* { box-sizing: border-box; }
+html { -webkit-font-smoothing: antialiased; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", "Heiti TC", sans-serif;
+  line-height: 1.65;
+}
+h1, h2, h3 {
+  font-family: "Songti TC", "Noto Serif TC", "PMingLiU", serif;
+  font-weight: 600;
+  line-height: 1.25;
+  text-wrap: balance;
+}
+img { max-width: 100%; height: auto; display: block; object-fit: cover; }
+a { color: inherit; }
+.wrap { width: min(72rem, calc(100% - 2.5rem)); margin-inline: auto; }
+.site-header {
+  position: sticky; top: 0; z-index: 10;
+  background: color-mix(in srgb, var(--paper) 94%, transparent);
+  border-bottom: 1px solid var(--line);
+  backdrop-filter: blur(8px);
+}
+.bar {
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  min-height: 4.25rem;
+}
+.logo { display: flex; align-items: center; gap: .75rem; text-decoration: none; font-family: "Songti TC", serif; font-size: 1.35rem; }
+.logo svg { width: 2rem; height: 2rem; }
+nav { display: flex; align-items: center; gap: 1.4rem; }
+nav a, summary {
+  color: var(--muted); text-decoration: none; font-size: .95rem; min-height: 2.75rem;
+  display: inline-flex; align-items: center; cursor: pointer;
+}
+nav a:hover, summary:hover, nav a.on { color: var(--ink); }
+details { position: relative; }
+summary { list-style: none; }
+summary::-webkit-details-marker { display: none; }
+summary:after { content: " ▾"; font-size: .75rem; }
+.menu {
+  position: absolute; left: 0; top: 100%; width: 15rem;
+  background: var(--card); border: 1px solid var(--line); padding: .35rem 0;
+}
+.menu a { display: flex; justify-content: space-between; padding: .7rem 1rem; color: var(--ink); width: 100%; }
+.menu a:hover { background: var(--paper); }
+.kicker { letter-spacing: .22em; font-size: .75rem; color: var(--sea); margin: 0; }
+.kicker.clay { color: var(--clay); }
+h1 { font-size: clamp(2.2rem, 5vw, 3.6rem); margin: .6rem 0 0; }
+.lede { font-size: 1.15rem; color: var(--muted); max-width: 38rem; }
+.hero { display: grid; gap: 2.2rem; align-items: end; padding: 3.2rem 0 1rem; }
+.actions { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.5rem; }
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; min-height: 2.75rem;
+  padding: 0 1.2rem; text-decoration: none; font-size: .95rem;
+}
+.btn.ink { background: var(--ink); color: var(--paper); }
+.btn.line { border: 1px solid var(--ink); color: var(--ink); }
+.btn.sea { background: var(--sea); color: var(--paper); }
+.btn:active { scale: .96; }
+figcaption, .note { color: var(--muted); font-size: .92rem; }
+.photo { width: 100%; aspect-ratio: 16/9; }
+.photo.sq { aspect-ratio: 3/2; }
+.section { padding: 3.5rem 0; }
+.row-head { display: flex; justify-content: space-between; align-items: end; border-bottom: 1px solid var(--line); padding-bottom: .8rem; }
+.topic { display: grid; gap: 1rem; padding: 1.4rem 0; border-bottom: 1px solid var(--line); text-decoration: none; }
+.topic:hover h2 { color: var(--sea); }
+.num { font-family: "Songti TC", serif; color: var(--sea); font-size: 1.4rem; }
+.topic h2 { margin: 0; font-size: 1.7rem; }
+.topic p { margin: .4rem 0 0; color: var(--muted); }
+.band { background: var(--ink); color: var(--paper); }
+.band p { color: color-mix(in srgb, var(--paper) 82%, transparent); }
+.stats { display: grid; gap: 1.4rem; margin-top: 1.6rem; }
+.stats div { border-top: 1px solid color-mix(in srgb, var(--paper) 28%, transparent); padding-top: .8rem; }
+.stats strong { display: block; font-family: "Songti TC", serif; font-size: 1.8rem; font-weight: 600; }
+.stats span { display: block; margin-top: .35rem; font-size: .92rem; }
+.stats em { display: block; margin-top: .4rem; font-style: normal; letter-spacing: .14em; font-size: .75rem; opacity: .7; }
+.split { display: grid; gap: 2rem; }
+.step { display: grid; grid-template-columns: auto 1fr; gap: 1rem; border-top: 1px solid var(--line); padding: 1rem 0; }
+.step h3 { margin: 0; font-size: 1.25rem; }
+.step p { margin: .25rem 0 0; color: var(--muted); font-size: .95rem; }
+.shore { display: grid; gap: 1.5rem; align-items: center; padding-bottom: 1rem; }
+footer { border-top: 1px solid var(--line); margin-top: 4rem; padding: 2.5rem 0 3rem; }
+.foot { display: grid; gap: 1.6rem; }
+footer a { display: block; text-decoration: none; padding: .35rem 0; }
+footer a:hover { color: var(--sea); }
+.crumbs { color: var(--muted); font-size: .92rem; }
+.crumbs a { color: var(--muted); }
+.article { max-width: 44rem; padding: 2.5rem 0 1rem; }
+.article h2 { font-size: 1.55rem; margin-bottom: .3rem; }
+.article p { color: var(--muted); }
+.box { border: 1px solid var(--line); background: var(--card); padding: 1.2rem 1.3rem; margin-top: 2rem; }
+.box li { margin: .7rem 0; }
+.cards { display: grid; gap: 1.6rem; }
+.card { text-decoration: none; display: block; }
+.card:hover h2 { color: var(--sea); }
+.card h2 { margin: .25rem 0; }
+.more { display: grid; gap: 1rem; }
+.more a { border: 1px solid var(--line); background: var(--card); text-decoration: none; }
+.more span { display: block; padding: .9rem 1rem 1.1rem; }
+label { display: grid; gap: .4rem; font-size: .95rem; margin-bottom: .9rem; }
+input, select, textarea {
+  min-height: 2.75rem; border: 1px solid var(--line); background: var(--card); color: var(--ink);
+  padding: .6rem .75rem; font: inherit; width: 100%;
+}
+textarea { min-height: 9rem; }
+button.btn { border: 0; cursor: pointer; font: inherit; }
+.list { border-top: 1px solid var(--line); }
+.list a { display: flex; justify-content: space-between; gap: 1rem; text-decoration: none; padding: .9rem 0; border-bottom: 1px solid var(--line); }
+@media (min-width: 800px) {
+  .hero { grid-template-columns: 1fr 1fr; padding-top: 4.5rem; }
+  .topic { grid-template-columns: 3rem 1fr 16rem; align-items: center; }
+  .stats { grid-template-columns: repeat(4, 1fr); }
+  .split { grid-template-columns: 5fr 7fr; }
+  .shore { grid-template-columns: 1fr 1fr; }
+  .foot { grid-template-columns: 1.4fr .8fr 1fr; }
+  .cards { grid-template-columns: 1fr 1fr; }
+  .more { grid-template-columns: repeat(4, 1fr); }
+  .contact { display: grid; grid-template-columns: 5fr 7fr; gap: 3rem; }
+}
+@media (max-width: 799px) {
+  nav { display: none; }
+  nav.open { display: flex; }
+}
+
+@media (max-width: 799px) {
+  nav { display: flex; flex-wrap: wrap; gap: .2rem 1rem; }
+  .bar { align-items: flex-start; padding: .4rem 0 .6rem; flex-wrap: wrap; }
+  .menu { position: static; width: 100%; border: 0; background: transparent; padding: 0 0 .4rem 1rem; }
+}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap bar">
+    <a class="logo" href="index.html">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" fill="#12263a"/>
+        <path d="M5 17c3.2-4 5.2-4 8.2 0s5 4 8.2 0 5-4 8.2 0" fill="none" stroke="#f3efe6" stroke-width="1.6"/>
+        <path d="M5 23c3.2-4 5.2-4 8.2 0s5 4 8.2 0 5-4 8.2 0" fill="none" stroke="#1d6b63" stroke-width="1.6"/>
+      </svg>
+      守海
+    </a>
+    <nav>
+      <a href="index.html" class="on">首頁</a>
+      <a href="about.html">關於我們</a>
+      <details>
+        <summary>保護海洋</summary>
+        <div class="menu">
+          <a href="protect.html">主題總覽</a>
+          <a href="overfishing.html">過度捕撈<span>01</span></a>
+<a href="debris.html">海洋垃圾<span>02</span></a>
+<a href="warming.html">海水溫度上升<span>03</span></a>
+<a href="pollution.html">海洋污染<span>04</span></a>
+<a href="development.html">人類城市開發<span>05</span></a>
+        </div>
+      </details>
+      <a href="contact.html">聯絡我們</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="wrap hero">
+    <div>
+      <p class="kicker">首頁 · 海洋讀本</p>
+      <h1>海洋正在承受五種壓力。</h1>
+      <p class="lede">過度捕撈、海洋垃圾、海水溫度上升、海洋污染，以及海岸上的城市開發。守海把這五件事分開說明，也放在一起看。</p>
+      <div class="actions">
+        <a class="btn ink" href="protect.html">進入保護海洋</a>
+        <a class="btn line" href="about.html">關於我們</a>
+      </div>
+    </div>
+    <figure>
+      <img class="photo" src="images/coast.jpg" alt="黎明時分的岩岸與平靜海面，遠方有細小的船影">
+      <figcaption>黎明的海岸。海面平靜，不代表海裡無事。</figcaption>
+    </figure>
+  </section>
+  <section class="wrap section">
+    <div class="row-head">
+      <div>
+        <p class="kicker clay">保護海洋</p>
+        <h2>五個入口</h2>
+      </div>
+      <a href="protect.html">主題總覽</a>
+    </div>
+    <a class="topic" href="overfishing.html">
+  <span class="num">01</span>
+  <span><h2>過度捕撈</h2><p>捕得比魚群恢復得更快，海裡的食物網就會從上層開始鬆開。</p></span>
+  <img class="photo sq" src="images/overfishing.jpg" alt="漁船甲板上的漁網與漁獲，船員的手正在整理繩索">
+</a>
+<a class="topic" href="debris.html">
+  <span class="num">02</span>
+  <span><h2>海洋垃圾</h2><p>瓶子、發泡膠和廢棄漁網不會在潮線上停下，它們會繼續往海裡走。</p></span>
+  <img class="photo sq" src="images/debris.jpg" alt="沙灘潮線上散落的塑膠瓶、繩索和泡沫碎片">
+</a>
+<a class="topic" href="warming.html">
+  <span class="num">03</span>
+  <span><h2>海水溫度上升</h2><p>海洋吸收了地球系統裡大部分多出來的熱，珊瑚和魚群先受到影響。</p></span>
+  <img class="photo sq" src="images/warming.jpg" alt="清澈海水中，白化的珊瑚與仍然活著的礁體並排">
+</a>
+<a class="topic" href="pollution.html">
+  <span class="num">04</span>
+  <span><h2>海洋污染</h2><p>油膜、肥料、污水和噪音多半從城市與農田出發，最後才到達海。</p></span>
+  <img class="photo sq" src="images/pollution.jpg" alt="混凝土排污口旁混濁的近岸海水，水面上有薄薄的油膜">
+</a>
+<a class="topic" href="development.html">
+  <span class="num">05</span>
+  <span><h2>人類城市開發</h2><p>填海、道路和海堤把連續的潮間帶切開，魚苗和紅樹林一起失去位置。</p></span>
+  <img class="photo sq" src="images/development.jpg" alt="高樓貼著填海海岸，前景只剩窄窄的泥灘和幾株紅樹">
+</a>
+  </section>
+  <section class="band">
+    <div class="wrap section">
+      <h2>用來建立概念的四個數字</h2>
+      <p>以下是 FAO、IPCC 與聯合國環境規劃署常被引用的估計，經四捨五入，用來看見規模，不是即時監測。</p>
+      <div class="stats">
+        <div><strong>約 1/3</strong><span>受評估魚群處於過度捕撈</span><em>FAO</em></div>
+        <div><strong>上千萬噸</strong><span>塑膠每年從陸地進入海洋</span><em>研究估計</em></div>
+        <div><strong>約 90%</strong><span>額外的熱被海洋吸收</span><em>IPCC</em></div>
+        <div><strong>約 80%</strong><span>海洋污染常被認為源自陸地</span><em>UNEP 常引用</em></div>
+      </div>
+    </div>
+  </section>
+  <section class="wrap section split">
+    <div>
+      <p class="kicker">怎麼一起看</p>
+      <h2>保護不是先選一個最愛的議題。</h2>
+      <p class="lede">這五件事常常被分成不同版面。海不這樣分類。過度捕撈讓魚群變脆弱，暖化改變牠們的分布，污染和垃圾削弱近岸，城市開發再把繁殖場本身拿走。</p>
+    </div>
+    <div>
+      <div class="step"><span class="num">01</span><div><h3>先分開看清楚</h3><p>五個主題各有自己的原因。拖網、塑膠瓶、白化、排污和填海，不是同一種新聞。</p></div></div>
+      <div class="step"><span class="num">02</span><div><h3>再放回同一條海岸</h3><p>魚變少、水變暖、繁殖場被填掉，會疊在同一群生物身上。分開治理，仍要一起理解。</p></div></div>
+      <div class="step"><span class="num">03</span><div><h3>從做得到的動作開始</h3><p>少一次即棄餐具、問海鮮的季節、不踩珊瑚、討論填海時問潮間帶還剩多少。</p></div></div>
+    </div>
+  </section>
+  <section class="wrap shore">
+    <img class="photo" src="images/mangrove.jpg" alt="兩個人在退潮的紅樹林裡清理岸邊垃圾">
+    <div>
+      <p class="kicker">從身邊的海岸開始</p>
+      <h2>具體的動作，比口號更靠近海。</h2>
+      <p class="lede">在香港，中華白海豚的棲地、米埔的紅樹林、東平洲的珊瑚，都已經和填海、航運、遊人與水溫連在一起。你不需要先成為專家，才可以少製造一種壓力。</p>
+      <p><a class="btn sea" href="contact.html">寫給我們</a></p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <div>
+      <p class="logo">守海</p>
+      <p class="note">一個介紹海洋壓力與保護方法的讀本。不是政府部門，也不是註冊慈善機構。</p>
+    </div>
+    <div>
+      <p class="kicker">網站</p>
+      <a href="index.html">首頁</a>
+      <a href="about.html">關於我們</a>
+      <a href="protect.html">保護海洋</a>
+      <a href="contact.html">聯絡我們</a>
+    </div>
+    <div>
+      <p class="kicker">五個主題</p>
+      <a href="overfishing.html">過度捕撈</a>
+<a href="debris.html">海洋垃圾</a>
+<a href="warming.html">海水溫度上升</a>
+<a href="pollution.html">海洋污染</a>
+<a href="development.html">人類城市開發</a>
+    </div>
+  </div>
+</footer>
+</body>
+</html>
